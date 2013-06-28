@@ -30,6 +30,7 @@ echo "Setting up hadoop site"
 sed -e 's#@MASTERNODE@#'$masternode'#g' conf/core-site.xml > $cfdir/core-site.xml
 sed -e 's#@DFSDIR@#'$dfsdir'#g' conf/hdfs-site.xml > $cfdir/hdfs-site.xml
 sed -e 's#@MASTERNODE@#'$masternode'#g; s#@HADOOPDIR@#'$hadoopdir'#g' conf/mapred-site.xml > $cfdir/mapred-site.xml
+cp conf/hadoop-env.sh $cfdir/hadoop-env.sh
 tail -n +2 nodes.out > $cfdir/slaves
 
 ###
