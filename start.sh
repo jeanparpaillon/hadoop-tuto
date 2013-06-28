@@ -21,7 +21,7 @@ echo "Setting up hadoop site"
 ###
 masternode=$(head -1 nodes.out)
 cfdir=$hadoopdir/conf
-dfsdir=$topdir/dfs
+dfsdir=/tmp/hdfs
 sed -e 's/@MASTERNODE@/'$masternode'/g' conf/core-site.xml > $cfdir/core-site.xml
 sed -e 's/@DFSDIR@/'$dfsdir'/g' conf/hdfs-site.xml > $cfdir/hdfs-site.xml
 sed -e 's/@MASTERNODE@/'$masternode'/g; s/@HADOOPDIR@/'$hadoopdir'/g' conf/mapred-site.xml > $cfdir/mapred-site.xml
