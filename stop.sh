@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Stop hadoop session
 #
-nojobid() {
+function nojobid {
     echo "No current session or invalid jobid"
     exit 0
 }
@@ -18,7 +18,7 @@ if test ! -d $hadoopdir; then
     echo "No Hadoop. Please run setup.mk"
 fi
 
-masternode=$(head -1 nodes.out)
+masternode=login
 cfdir=$hadoopdir/conf
 dfsdir=/tmp/hdfs
 jobid=$(cat jobid.out)
@@ -27,6 +27,14 @@ jobid=$(cat jobid.out)
 echo "Stopping Hadoop services"
 ###
 ssh $masternode $hadoopdir/bin/stop-all.sh
+
+###
+echo "Cleanup"
+###
+rm -rf $dfsdir
+cat nodes.out | while read node; do
+    ssh $node rm -rf $dfsdir
+done
 
 ###
 echo "Stopping Hadoop session $jobid"
