@@ -9,10 +9,8 @@ if test ! -d $hadoopdir; then
     echo "No Hadoop. Please run setup.mk"
 fi
 
-masternode=$(head -1 nodes.out)
 cfdir=$hadoopdir/conf
 dfsdir=/tmp/hdfs
-jobid=$(cat jobid.out)
 
 ###
 echo "Clean up"
@@ -23,6 +21,9 @@ echo "Starting Hadoop session"
 ###
 llsubmit ssh.cmd 2>&1 | grep "The job" | sed -e 's/^llsubmit: The job "\([a-z0-9\.]\+\)\".*/\1/' > jobid.out
 llq -l $jobid | grep 'Task Instance' | tail -4 | sed -e 's/^.*\(node[0-9]\+\).*/\1/' > nodes.out
+
+masternode=$(head -1 nodes.out)
+jobid=$(cat jobid.out)
 
 ###
 echo "Setting up hadoop site"
