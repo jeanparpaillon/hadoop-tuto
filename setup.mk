@@ -2,12 +2,22 @@
 #
 # Install hadoop
 #
-hadoopurl=http://apache.crihan.fr/dist/hadoop/common/hadoop-1.2.0/hadoop-1.2.0-bin.tar.gz
+hadoopfile = hadoop-1.2.0-bin.tar.gz
+hadoopurl = http://apache.crihan.fr/dist/hadoop/common/hadoop-1.2.0/$(hadoopfile)
 
-all: hadoop-1.2.0
+archivebaseurl = http://dumps.wikimedia.org/frwiki/20130601
+archives = frwiki-20130601-pages-articles-multistream-index.txt.bz2 frwiki-20130601-pages-articles-multistream.xml.bz2
 
-hadoop-1.2.0: hadoop-1.2.0-bin.tar.gz
+all: hadoop-1.2.0 $(archives)
+	rm -fr data
+	for ar in $(archives); do \
+	  wget $(archivebaseurl)/$$ar; \
+	done
+
+hadoop-1.2.0: $(hadoopfile)
 	tar xf $<
 
-hadoop-1.2.0-bin.tar.gz:
+$(hadoopfile):
 	wget $(hadoopurl)
+
+.PHONY: all data
