@@ -2,7 +2,7 @@
 #
 # Start an 'idle' job and deploy Hadoop on the reserved nodes
 #
-topdir=$(dirname $0)
+topdir=$(cd $(dirname $0) && pwd)
 hadoopdir=$topdir/hadoop-1.2.0
 
 if test ! -d $hadoopdir; then
@@ -20,10 +20,9 @@ rm -fr $dfsdir
 echo "Starting Hadoop session"
 ###
 llsubmit ssh.cmd 2>&1 | grep "The job" | sed -e 's/^llsubmit: The job "\([a-z0-9\.]\+\)\".*/\1/' > jobid.out
-llq -l $jobid | grep 'Task Instance' | tail -4 | sed -e 's/^.*\(node[0-9]\+\).*/\1/' > nodes.out
-
-masternode=$(head -1 nodes.out)
 jobid=$(cat jobid.out)
+llq -l $jobid | grep 'Task Instance' | tail -4 | sed -e 's/^.*\(node[0-9]\+\).*/\1/' > nodes.out
+masternode=$(head -1 nodes.out)
 
 ###
 echo "Setting up hadoop site"
