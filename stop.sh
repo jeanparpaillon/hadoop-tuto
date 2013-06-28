@@ -27,7 +27,6 @@ jobid=$(cat jobid.out)
 echo "Stopping Hadoop services"
 ###
 ssh $masternode $hadoopdir/bin/stop-all.sh
-ssh $masternode "rm -rf $dfsdir"
 
 ###
 echo "Stopping Hadoop session $jobid"

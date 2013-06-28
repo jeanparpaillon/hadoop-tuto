@@ -9,10 +9,9 @@ archivebaseurl = http://dumps.wikimedia.org/frwiki/20130601
 archives = frwiki-20130601-pages-articles-multistream-index.txt.bz2 frwiki-20130601-pages-articles-multistream.xml.bz2
 
 all: hadoop-1.2.0 $(archives)
-	rm -fr data
-	for ar in $(archives); do \
-	  wget $(archivebaseurl)/$$ar; \
-	done
+
+%.bz2:
+	wget -c $(archivebaseurl)/$@
 
 hadoop-1.2.0: $(hadoopfile)
 	tar xf $<
