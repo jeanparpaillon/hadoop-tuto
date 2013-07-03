@@ -23,6 +23,6 @@ hadoop-1.2.0: $(hadoopfile)
 	tar xf $<
 
 $(hadoopfile):
-	wget -O $(hadoopfile) $(hadoopurl)
+	wget -O ../$(hadoopfile) $(hadoopurl)
 
 .PHONY: all data

@@ -2,7 +2,7 @@
 #
 # Start an 'idle' job and deploy Hadoop on the reserved nodes
 #
-topdir=$(cd $(dirname $0) && pwd)
+topdir=$(cd $(dirname $0)/.. && pwd)
 hadoopdir=$topdir/hadoop-1.2.0
 hadoop=$hadoopdir/bin/hadoop
 

@@ -7,7 +7,7 @@ function nojobid {
     exit 0
 }
 
-topdir=$(cd $(dirname $0) && pwd)
+topdir=$(cd $(dirname $0)/.. && pwd)
 hadoopdir=$topdir/hadoop-1.2.0
 
 if test ! -e jobid.out; then
