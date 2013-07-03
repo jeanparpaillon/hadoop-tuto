@@ -10,7 +10,7 @@
 # @ wall_clock_limit = 60:02:00,60:00:00
 # @ environment = COPY_ALL
 # @ account_no = F_Ecole13
-# @ queue
 # @ node_usage = not_shared
+# @ queue
 
 sleep 60h
