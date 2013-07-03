@@ -57,7 +57,7 @@ echo "Create users workdirs"
 for i in `seq 11 60`; do 
     echo "... eleve$i"
     ssh $masternode $hadoop fs -mkdir /tmp/hadoop-eleve$i/mapred/staging
-    ssh $masternode $hadoop fs -chown -R eleve$i:F_Ecole13 /tmp/hadoop-eleve$i/mapred/staging
+    ssh $masternode $hadoop fs -chown -R eleve$i:F_Ecole13 /tmp/hadoop-eleve$i
     ssh $masternode $hadoop fs -mkdir /user/eleve$i
     ssh $masternode $hadoop fs -chown -R eleve$i:F_Ecole13 /user/eleve$i
 done
