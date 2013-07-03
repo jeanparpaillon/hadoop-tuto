@@ -44,9 +44,11 @@ ssh $masternode rm -rf $dfsdir
 for node in `cat nodes.out`; do 
     echo "Cleaning up node: $node"
     ssh $node rm -fr $dfsdir
+    ssh $node 'rm -fr /tmp/hadoop-*'
 done
 
 ssh $masternode $hadoop namenode -format
+ssh $masternode $hadoopdir/bin/stop-all.sh
 ssh $masternode $hadoopdir/bin/start-all.sh
 
 ###

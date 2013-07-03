@@ -34,6 +34,7 @@ echo "Cleanup"
 rm -rf $dfsdir
 cat nodes.out | while read node; do
     ssh $node rm -rf $dfsdir
+    ssh $node 'rm -rf /tmp/hadoop-eleve-*'
 done
 
 ###
